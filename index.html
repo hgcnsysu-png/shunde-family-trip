@@ -1,413 +1,48 @@
 <!doctype html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#24566b" />
-  <title>2026 台東三天兩夜｜高雄小港抵達・台鐵＋台東租車</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#24566b">
+  <title>2026 台東四天三夜｜高雄小港抵達・台鐵＋台東租車</title>
   <style>
     :root{
-      --ink:#17242a;
-      --muted:#697981;
-      --bg:#f4efe5;
-      --card:#fffdf7;
-      --ocean:#24566b;
-      --ocean2:#4f91a7;
-      --sun:#f0a33b;
-      --grass:#5f8d62;
-      --rose:#d96d55;
-      --line:#ded4c3;
-      --shadow:0 18px 45px rgba(21,45,54,.13);
+      --ink:#17242a;--muted:#687880;--bg:#f4efe5;--card:#fffdf7;
+      --ocean:#24566b;--ocean2:#4f91a7;--sun:#f0a33b;--grass:#5f8d62;
+      --rose:#d96d55;--line:#ded4c3;--shadow:0 18px 45px rgba(21,45,54,.13);
       --radius:24px;
     }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      color:var(--ink);
-      background:
-        radial-gradient(circle at 10% 4%, rgba(240,163,59,.18), transparent 28rem),
-        radial-gradient(circle at 94% 12%, rgba(79,145,167,.16), transparent 30rem),
-        linear-gradient(#f8f2e8,#f4efe5);
-      font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
-      line-height:1.68;
-    }
-    a{color:inherit}
-    .hero{
-      min-height:75vh;
-      color:#fff;
-      position:relative;
-      overflow:hidden;
-      display:grid;
-      place-items:center;
-      background:
-        linear-gradient(135deg, rgba(17,54,70,.96), rgba(36,86,107,.9)),
-        var(--ocean);
-    }
-    .hero:before{
-      content:"";
-      position:absolute;
-      inset:0;
-      opacity:.18;
-      background:
-        radial-gradient(circle at 72% 30%, #fff 0 4px, transparent 5px),
-        radial-gradient(circle at 78% 38%, #fff 0 2px, transparent 3px),
-        linear-gradient(155deg, transparent 44%, rgba(255,255,255,.35) 45% 47%, transparent 48%) 8% 100%/42% 55% no-repeat,
-        linear-gradient(205deg, transparent 44%, rgba(255,255,255,.42) 45% 47%, transparent 48%) 78% 100%/54% 62% no-repeat;
-    }
-    .hero:after{
-      content:"";
-      position:absolute;
-      width:360px;height:360px;
-      right:-90px;top:-120px;
-      border-radius:50%;
-      border:1px solid rgba(255,255,255,.28);
-    }
-    .hero-inner{
-      position:relative;
-      z-index:2;
-      width:min(1120px,91%);
-      padding:82px 0 68px;
-    }
-    .eyebrow{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:8px 14px;
-      border:1px solid rgba(255,255,255,.26);
-      border-radius:999px;
-      background:rgba(255,255,255,.08);
-      font-size:13px;
-      letter-spacing:.08em;
-    }
-    h1{
-      max-width:820px;
-      margin:22px 0 16px;
-      font-family:Georgia,"Noto Serif TC",serif;
-      font-size:clamp(40px,7vw,76px);
-      line-height:1.05;
-      letter-spacing:-.035em;
-    }
-    .lead{
-      max-width:720px;
-      margin:0 0 28px;
-      color:rgba(255,255,255,.78);
-      font-size:clamp(17px,2vw,21px);
-    }
-    .actions{display:flex;flex-wrap:wrap;gap:12px}
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-height:46px;
-      padding:0 18px;
-      border:0;
-      border-radius:14px;
-      text-decoration:none;
-      cursor:pointer;
-      font-weight:800;
-      transition:.2s ease;
-    }
-    .btn:hover{transform:translateY(-2px)}
-    .primary{color:var(--ocean);background:#fff6df}
-    .ghost{color:#fff;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.08)}
-    .quick{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:12px;
-      margin-top:44px;
-    }
-    .quick div{
-      padding:16px;
-      border:1px solid rgba(255,255,255,.15);
-      border-radius:18px;
-      background:rgba(255,255,255,.08);
-      backdrop-filter:blur(10px);
-    }
-    .quick small{display:block;color:rgba(255,255,255,.58)}
-    .quick strong{display:block;font-size:17px}
-    .nav{
-      position:sticky;
-      top:0;
-      z-index:50;
-      overflow-x:auto;
-      white-space:nowrap;
-      scrollbar-width:none;
-      border-bottom:1px solid rgba(23,36,42,.1);
-      background:rgba(244,239,229,.92);
-      backdrop-filter:blur(14px);
-    }
-    .nav::-webkit-scrollbar{display:none}
-    .nav div{
-      width:min(1120px,92%);
-      margin:auto;
-      display:flex;
-      gap:7px;
-      padding:10px 0;
-    }
-    .nav a{
-      padding:8px 13px;
-      color:var(--muted);
-      border-radius:999px;
-      text-decoration:none;
-      font-size:14px;
-    }
-    .nav a:hover{color:#fff;background:var(--ocean)}
-    main{
-      width:min(1120px,92%);
-      margin:auto;
-      padding:64px 0 90px;
-    }
-    section{scroll-margin-top:78px;margin-bottom:76px}
-    .section-head{
-      display:flex;
-      justify-content:space-between;
-      align-items:end;
-      gap:24px;
-      margin-bottom:24px;
-    }
-    .kicker{
-      margin:0 0 7px;
-      color:var(--rose);
-      font-size:13px;
-      font-weight:900;
-      letter-spacing:.12em;
-    }
-    h2{
-      margin:0;
-      font-family:Georgia,"Noto Serif TC",serif;
-      font-size:clamp(30px,4vw,48px);
-      line-height:1.15;
-    }
-    .note{max-width:460px;margin:0;color:var(--muted)}
-    .grid{display:grid;gap:18px}
-    .two{grid-template-columns:1.25fr .75fr}
-    .three{grid-template-columns:repeat(3,1fr)}
-    .card{
-      border:1px solid rgba(23,36,42,.09);
-      border-radius:var(--radius);
-      background:rgba(255,253,247,.92);
-      box-shadow:var(--shadow);
-    }
-    .summary-card{padding:26px}
-    .summary-card h3{margin:0 0 14px;font-size:24px}
-    .route{
-      position:relative;
-      padding-left:36px;
-      margin-top:18px;
-    }
-    .route:before{
-      content:"";
-      position:absolute;
-      left:10px;
-      top:10px;
-      bottom:10px;
-      width:2px;
-      background:linear-gradient(var(--sun),var(--ocean2),var(--grass));
-    }
-    .stop{
-      position:relative;
-      display:grid;
-      grid-template-columns:78px 1fr;
-      gap:12px;
-      margin-bottom:20px;
-    }
-    .stop:before{
-      content:"";
-      position:absolute;
-      left:-32px;
-      top:8px;
-      width:12px;height:12px;
-      border:3px solid var(--card);
-      border-radius:50%;
-      background:var(--sun);
-      box-shadow:0 0 0 2px var(--sun);
-    }
-    .stop time{color:var(--ocean);font-weight:900}
-    .stop strong{display:block}
-    .stop span{color:var(--muted);font-size:14px}
-    .stat{padding:22px}
-    .stat .icon{
-      width:46px;height:46px;
-      display:grid;place-items:center;
-      margin-bottom:12px;
-      border-radius:15px;
-      color:#fff;
-      background:var(--ocean);
-      font-size:22px;
-    }
-    .stat small{color:var(--muted)}
-    .stat strong{display:block;font-size:22px}
-    .timeline{position:relative}
-    .timeline:before{
-      content:"";
-      position:absolute;
-      left:68px;
-      top:10px;
-      bottom:10px;
-      width:1px;
-      background:var(--line);
-    }
-    .event{
-      display:grid;
-      grid-template-columns:52px 1fr;
-      gap:34px;
-      margin-bottom:22px;
-      position:relative;
-    }
-    .event>time{
-      padding-top:24px;
-      color:var(--ocean);
-      font-weight:900;
-      font-size:14px;
-    }
-    .event article{
-      position:relative;
-      padding:24px;
-      border:1px solid rgba(23,36,42,.09);
-      border-radius:22px;
-      background:rgba(255,253,247,.88);
-    }
-    .event article:before{
-      content:"";
-      position:absolute;
-      left:-23px;
-      top:30px;
-      width:11px;height:11px;
-      border:3px solid var(--bg);
-      border-radius:50%;
-      background:var(--sun);
-      box-shadow:0 0 0 1px var(--sun);
-    }
-    .event-top{display:flex;justify-content:space-between;gap:16px}
-    .event h3{margin:0;font-size:21px}
-    .tag{
-      height:fit-content;
-      padding:5px 10px;
-      border-radius:999px;
-      color:var(--ocean);
-      background:#e4eff1;
-      font-size:12px;
-      font-weight:900;
-      white-space:nowrap;
-    }
-    .event p{margin:9px 0 0;color:var(--muted)}
-    details{margin-top:15px}
-    summary{cursor:pointer;color:var(--ocean);font-weight:900}
-    .mini-grid{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:12px;
-      margin-top:14px;
-    }
-    .mini{
-      padding:14px;
-      border-radius:15px;
-      background:#f1eadf;
-    }
-    .mini b{display:block;margin-bottom:4px;font-size:14px}
-    .mini span,.mini li{color:var(--muted);font-size:13px}
-    .mini ul{margin:6px 0 0;padding-left:18px}
-    .day-label{
-      display:inline-flex;
-      margin:20px 0 18px 86px;
-      padding:7px 12px;
-      border-radius:999px;
-      color:#fff;
-      background:var(--ocean);
-      font-weight:900;
-      font-size:13px;
-      letter-spacing:.08em;
-    }
-    .food-card,.tip-card{padding:22px}
-    .food-card h3,.tip-card h3{margin:0 0 8px}
-    .food-card p,.tip-card p{margin:0 0 12px;color:var(--muted)}
-    .food-card ul,.tip-card ul{margin:0;padding-left:20px}
-    .notice{
-      padding:18px 20px;
-      border-radius:18px;
-      color:#654014;
-      background:#f9e6c4;
-    }
-    .checklist{
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:10px;
-    }
-    .check{
-      display:flex;
-      gap:11px;
-      align-items:flex-start;
-      padding:14px 15px;
-      border:1px solid rgba(23,36,42,.09);
-      border-radius:15px;
-      background:rgba(255,253,247,.85);
-    }
-    .check input{
-      width:19px;height:19px;
-      margin-top:3px;
-      accent-color:var(--ocean);
-    }
-    .check:has(input:checked) span{
-      text-decoration:line-through;
-      color:#8b969b;
-    }
-    .footer{
-      padding:42px 4%;
-      color:rgba(255,255,255,.78);
-      text-align:center;
-      background:#173947;
-    }
-    .footer strong{color:#fff}
-    .to-top{
-      position:fixed;
-      right:18px;bottom:18px;
-      z-index:60;
-      width:46px;height:46px;
-      display:grid;place-items:center;
-      border:0;border-radius:50%;
-      color:#fff;background:var(--ocean);
-      box-shadow:var(--shadow);
-      cursor:pointer;
-    }
-    @media(max-width:880px){
-      .quick,.three,.two{grid-template-columns:1fr 1fr}
-      .mini-grid{grid-template-columns:1fr}
-      .section-head{align-items:start;flex-direction:column}
-      .note{max-width:none}
-    }
-    @media(max-width:590px){
-      .hero{min-height:82vh}
-      .hero-inner{padding-top:58px}
-      .quick,.two,.three,.checklist{grid-template-columns:1fr}
-      main{padding-top:46px;width:91%}
-      .timeline:before{left:52px}
-      .event{grid-template-columns:40px 1fr;gap:25px}
-      .event article{padding:19px}
-      .event article:before{left:-18px}
-      .event-top{flex-direction:column}
-      .tag{align-self:flex-start}
-      .day-label{margin-left:64px}
-      .stop{grid-template-columns:68px 1fr}
-    }
-    @media print{
-      .hero{min-height:auto;color:var(--ink);background:#fff}
-      .hero:before,.hero:after,.nav,.actions,.to-top{display:none}
-      .hero-inner{width:100%;padding:20px 0}
-      .lead,.quick small{color:var(--muted)}
-      .quick{margin-top:20px}
-      .quick div,.card,.event article{box-shadow:none;background:#fff}
-      main{width:100%;padding:18px 0}
-      section{margin-bottom:34px;break-inside:avoid}
-    }
+    *{box-sizing:border-box} html{scroll-behavior:smooth}
+    body{margin:0;color:var(--ink);background:radial-gradient(circle at 10% 4%,rgba(240,163,59,.18),transparent 28rem),radial-gradient(circle at 94% 12%,rgba(79,145,167,.16),transparent 30rem),linear-gradient(#f8f2e8,#f4efe5);font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;line-height:1.68}
+    a{color:inherit}.hero{min-height:75vh;color:#fff;position:relative;overflow:hidden;display:grid;place-items:center;background:linear-gradient(135deg,rgba(17,54,70,.96),rgba(36,86,107,.9)),var(--ocean)}
+    .hero:before{content:"";position:absolute;inset:0;opacity:.18;background:radial-gradient(circle at 72% 30%,#fff 0 4px,transparent 5px),radial-gradient(circle at 78% 38%,#fff 0 2px,transparent 3px),linear-gradient(155deg,transparent 44%,rgba(255,255,255,.35) 45% 47%,transparent 48%) 8% 100%/42% 55% no-repeat,linear-gradient(205deg,transparent 44%,rgba(255,255,255,.42) 45% 47%,transparent 48%) 78% 100%/54% 62% no-repeat}
+    .hero:after{content:"";position:absolute;width:360px;height:360px;right:-90px;top:-120px;border-radius:50%;border:1px solid rgba(255,255,255,.28)}
+    .hero-inner{position:relative;z-index:2;width:min(1120px,91%);padding:82px 0 68px}
+    .eyebrow{display:inline-flex;padding:8px 14px;border:1px solid rgba(255,255,255,.26);border-radius:999px;background:rgba(255,255,255,.08);font-size:13px;letter-spacing:.08em}
+    h1{max-width:860px;margin:22px 0 16px;font-family:Georgia,"Noto Serif TC",serif;font-size:clamp(40px,7vw,76px);line-height:1.05;letter-spacing:-.035em}
+    .lead{max-width:750px;margin:0 0 28px;color:rgba(255,255,255,.78);font-size:clamp(17px,2vw,21px)}
+    .actions{display:flex;flex-wrap:wrap;gap:12px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 18px;border:0;border-radius:14px;text-decoration:none;cursor:pointer;font-weight:800;transition:.2s ease}.btn:hover{transform:translateY(-2px)}.primary{color:var(--ocean);background:#fff6df}.ghost{color:#fff;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.08)}
+    .quick{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:44px}.quick div{padding:16px;border:1px solid rgba(255,255,255,.15);border-radius:18px;background:rgba(255,255,255,.08);backdrop-filter:blur(10px)}.quick small{display:block;color:rgba(255,255,255,.58)}.quick strong{display:block;font-size:17px}
+    .nav{position:sticky;top:0;z-index:50;overflow-x:auto;white-space:nowrap;scrollbar-width:none;border-bottom:1px solid rgba(23,36,42,.1);background:rgba(244,239,229,.92);backdrop-filter:blur(14px)}.nav::-webkit-scrollbar{display:none}.nav div{width:min(1120px,92%);margin:auto;display:flex;gap:7px;padding:10px 0}.nav a{padding:8px 13px;color:var(--muted);border-radius:999px;text-decoration:none;font-size:14px}.nav a:hover{color:#fff;background:var(--ocean)}
+    main{width:min(1120px,92%);margin:auto;padding:64px 0 90px}section{scroll-margin-top:78px;margin-bottom:76px}.section-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:24px}.kicker{margin:0 0 7px;color:var(--rose);font-size:13px;font-weight:900;letter-spacing:.12em}h2{margin:0;font-family:Georgia,"Noto Serif TC",serif;font-size:clamp(30px,4vw,48px);line-height:1.15}.note{max-width:480px;margin:0;color:var(--muted)}
+    .grid{display:grid;gap:18px}.two{grid-template-columns:1.25fr .75fr}.three{grid-template-columns:repeat(3,1fr)}.card{border:1px solid rgba(23,36,42,.09);border-radius:var(--radius);background:rgba(255,253,247,.92);box-shadow:var(--shadow)}.summary-card,.tip-card,.food-card{padding:24px}.summary-card h3,.tip-card h3,.food-card h3{margin:0 0 10px;font-size:22px}.tip-card p,.food-card p{margin:0 0 12px;color:var(--muted)}.tip-card ul,.food-card ul{margin:0;padding-left:20px}
+    .route{position:relative;padding-left:36px;margin-top:18px}.route:before{content:"";position:absolute;left:10px;top:10px;bottom:10px;width:2px;background:linear-gradient(var(--sun),var(--ocean2),var(--grass))}.stop{position:relative;display:grid;grid-template-columns:78px 1fr;gap:12px;margin-bottom:20px}.stop:before{content:"";position:absolute;left:-32px;top:8px;width:12px;height:12px;border:3px solid var(--card);border-radius:50%;background:var(--sun);box-shadow:0 0 0 2px var(--sun)}.stop time{color:var(--ocean);font-weight:900}.stop strong{display:block}.stop span{color:var(--muted);font-size:14px}
+    .stat{padding:22px}.stat .icon{width:46px;height:46px;display:grid;place-items:center;margin-bottom:12px;border-radius:15px;color:#fff;background:var(--ocean);font-size:22px}.stat small{color:var(--muted)}.stat strong{display:block;font-size:22px}
+    .timeline{position:relative}.timeline:before{content:"";position:absolute;left:68px;top:10px;bottom:10px;width:1px;background:var(--line)}.event{display:grid;grid-template-columns:52px 1fr;gap:34px;margin-bottom:22px;position:relative}.event>time{padding-top:24px;color:var(--ocean);font-weight:900;font-size:14px}.event article{position:relative;padding:24px;border:1px solid rgba(23,36,42,.09);border-radius:22px;background:rgba(255,253,247,.88)}.event article:before{content:"";position:absolute;left:-23px;top:30px;width:11px;height:11px;border:3px solid var(--bg);border-radius:50%;background:var(--sun);box-shadow:0 0 0 1px var(--sun)}.event-top{display:flex;justify-content:space-between;gap:16px}.event h3{margin:0;font-size:21px}.tag{height:fit-content;padding:5px 10px;border-radius:999px;color:var(--ocean);background:#e4eff1;font-size:12px;font-weight:900;white-space:nowrap}.event p{margin:9px 0 0;color:var(--muted)}
+    details{margin-top:15px}summary{cursor:pointer;color:var(--ocean);font-weight:900}.mini-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}.mini{padding:14px;border-radius:15px;background:#f1eadf}.mini b{display:block;margin-bottom:4px;font-size:14px}.mini span,.mini li{color:var(--muted);font-size:13px}.mini ul{margin:6px 0 0;padding-left:18px}
+    .day-label{display:inline-flex;margin:20px 0 18px 86px;padding:7px 12px;border-radius:999px;color:#fff;background:var(--ocean);font-weight:900;font-size:13px;letter-spacing:.08em}.notice{padding:18px 20px;border-radius:18px;color:#654014;background:#f9e6c4}.checklist{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.check{display:flex;gap:11px;align-items:flex-start;padding:14px 15px;border:1px solid rgba(23,36,42,.09);border-radius:15px;background:rgba(255,253,247,.85)}.check input{width:19px;height:19px;margin-top:3px;accent-color:var(--ocean)}.check:has(input:checked) span{text-decoration:line-through;color:#8b969b}
+    .footer{padding:42px 4%;color:rgba(255,255,255,.78);text-align:center;background:#173947}.footer strong{color:#fff}.to-top{position:fixed;right:18px;bottom:18px;z-index:60;width:46px;height:46px;display:grid;place-items:center;border:0;border-radius:50%;color:#fff;background:var(--ocean);box-shadow:var(--shadow);cursor:pointer}
+    @media(max-width:880px){.quick,.three,.two{grid-template-columns:1fr 1fr}.mini-grid{grid-template-columns:1fr}.section-head{align-items:start;flex-direction:column}.note{max-width:none}}
+    @media(max-width:590px){.hero{min-height:82vh}.hero-inner{padding-top:58px}.quick,.two,.three,.checklist{grid-template-columns:1fr}main{padding-top:46px;width:91%}.timeline:before{left:52px}.event{grid-template-columns:40px 1fr;gap:25px}.event article{padding:19px}.event article:before{left:-18px}.event-top{flex-direction:column}.tag{align-self:flex-start}.day-label{margin-left:64px}.stop{grid-template-columns:68px 1fr}}
+    @media print{.hero{min-height:auto;color:var(--ink);background:#fff}.hero:before,.hero:after,.nav,.actions,.to-top{display:none}.hero-inner{width:100%;padding:20px 0}.lead,.quick small{color:var(--muted)}.quick{margin-top:20px}.quick div,.card,.event article{box-shadow:none;background:#fff}main{width:100%;padding:18px 0}section{margin-bottom:34px;break-inside:avoid}}
   </style>
 </head>
 <body>
   <header class="hero" id="top">
     <div class="hero-inner">
-      <span class="eyebrow">2026/7/29–7/31・台鐵＋台東租車</span>
-      <h1>台東三天兩夜，追一顆清晨的熱氣球</h1>
-      <p class="lead">從高雄小港機場轉台鐵到台東，在台東站取車。第一晚輕鬆進城，第二天鹿野熱氣球與光雕，第三天森林公園收尾後回高雄。</p>
+      <span class="eyebrow">2026/7/29–8/1・四天三夜・台鐵＋台東租車</span>
+      <h1>台東四天三夜，把縱谷也慢慢放進來</h1>
+      <p class="lead">從高雄小港機場轉台鐵到台東，在台東站取車。前兩晚住台東市追熱氣球與光雕，第三晚住池上／關山，把伯朗大道、大坡池與關山小鎮排得舒服一點。</p>
       <div class="actions">
         <a class="btn primary" href="#schedule">看完整時間軸 ↓</a>
         <button class="btn ghost" onclick="window.print()">列印／儲存 PDF</button>
@@ -415,8 +50,8 @@
       <div class="quick">
         <div><small>抵達高雄</small><strong>7/29（三）13:50</strong></div>
         <div><small>移動方式</small><strong>捷運＋台鐵＋租車</strong></div>
-        <div><small>住宿策略</small><strong>台東市兩晚</strong></div>
-        <div><small>核心亮點</small><strong>7/30 鹿野熱氣球</strong></div>
+        <div><small>住宿策略</small><strong>台東市2晚＋池上1晚</strong></div>
+        <div><small>核心亮點</small><strong>熱氣球＋池上縱谷</strong></div>
       </div>
     </div>
   </header>
@@ -435,297 +70,98 @@
   <main>
     <section id="overview">
       <div class="section-head">
-        <div>
-          <p class="kicker">AT A GLANCE</p>
-          <h2>三天怎麼走最順</h2>
-        </div>
-        <p class="note">這版刻意不排第一天南迴自駕，也不硬塞池上；把體力留給7/30的清晨熱氣球與晚間光雕。</p>
+        <div><p class="kicker">AT A GLANCE</p><h2>四天三夜的最佳節奏</h2></div>
+        <p class="note">四天三夜最大好處是不用把池上硬塞進熱氣球那天。Day 2 專心鹿野，Day 3 專心縱谷，孩子和司機都會比較像在旅行。</p>
       </div>
       <div class="grid two">
         <article class="card summary-card">
           <h3>推薦主路線</h3>
           <div class="route">
-            <div class="stop"><time>7/29</time><div><strong>小港機場 → 高雄車站 → 台東站</strong><span>捷運＋台鐵，到台東後取車、入住、吃晚餐。</span></div></div>
-            <div class="stop"><time>7/30</time><div><strong>鹿野高台 → 龍田 → 初鹿 → 午休 → 光雕</strong><span>清晨看球、上午輕遊、下午睡覺、晚上再上高台。</span></div></div>
-            <div class="stop"><time>7/31</time><div><strong>台東森林公園 → 午餐 → 還車 → 台鐵回高雄</strong><span>不拉長戰線，讓旅程收得漂亮。</span></div></div>
+            <div class="stop"><time>7/29</time><div><strong>小港機場 → 高雄車站 → 台東站</strong><span>抵達、取車、入住台東市，晚上早睡。</span></div></div>
+            <div class="stop"><time>7/30</time><div><strong>鹿野高台熱氣球 → 初鹿 → 午休 → 光雕</strong><span>清晨與晚間都留給熱氣球，白天輕遊。</span></div></div>
+            <div class="stop"><time>7/31</time><div><strong>關山 → 池上伯朗大道 → 住池上／關山</strong><span>縱谷主日，租電動車看稻田與山景。</span></div></div>
+            <div class="stop"><time>8/1</time><div><strong>池上慢遊 → 台東站還車 → 台鐵回高雄</strong><span>上午收尾，下午還車搭火車，不趕。</span></div></div>
           </div>
         </article>
         <div class="grid">
-          <article class="card stat"><div class="icon">🚆</div><small>高雄—台東火車</small><strong>約 2–2.5 小時</strong></article>
-          <article class="card stat"><div class="icon">🚗</div><small>台東當地租車</small><strong>約 45–50 小時</strong></article>
-          <article class="card stat"><div class="icon">🎈</div><small>熱氣球活動</small><strong>7/4–8/20，週二公休</strong></article>
+          <article class="card stat"><div class="icon">🎈</div><small>熱氣球嘉年華</small><strong>7/4–8/20，週二公休</strong></article>
+          <article class="card stat"><div class="icon">🌾</div><small>新增重點</small><strong>池上＋關山完整一天</strong></article>
+          <article class="card stat"><div class="icon">🏨</div><small>住宿</small><strong>台東市2晚、池上/關山1晚</strong></article>
         </div>
       </div>
     </section>
 
     <section id="schedule">
       <div class="section-head">
-        <div>
-          <p class="kicker">DAY BY DAY</p>
-          <h2>詳細時間軸</h2>
-        </div>
-        <p class="note">時間是家庭版節奏：給行李、孩子、租車驗車、暑假人潮都留出緩衝。</p>
+        <div><p class="kicker">DAY BY DAY</p><h2>詳細時間軸</h2></div>
+        <p class="note">以下時間留了家庭緩衝；若當天天氣炎熱，寧願刪景點，也不要把午休刪掉。</p>
       </div>
-
       <div class="timeline">
-        <div class="day-label">DAY 1｜7/29（三）抵達台東</div>
-        <div class="event">
-          <time>13:50</time>
-          <article>
-            <div class="event-top"><h3>抵達高雄小港機場</h3><span class="tag">不要急著衝</span></div>
-            <p>抓30–50分鐘領行李、上洗手間、整理孩子與行李。接著搭高雄捷運紅線往高雄車站。</p>
-            <details><summary>銜接提醒</summary><div class="mini-grid">
-              <div class="mini"><b>捷運</b><span>小港站到高雄車站約25–30分鐘，含走路抓40分鐘較穩。</span></div>
-              <div class="mini"><b>台鐵</b><span>建議訂15:30–16:30之間往台東的自強／新自強。</span></div>
-              <div class="mini"><b>備用</b><span>若航班延誤，改搭下一班台鐵；第一晚不排景點，所以有彈性。</span></div>
-            </div></details>
-          </article>
-        </div>
-        <div class="event">
-          <time>15:30</time>
-          <article>
-            <div class="event-top"><h3>高雄車站搭台鐵往台東</h3><span class="tag">先訂對號座</span></div>
-            <p>暑假高雄—台東班次容易滿，建議用台鐵官網或台鐵e訂通預訂。小孩可準備小零食與外套，車上冷氣常偏強。</p>
-          </article>
-        </div>
-        <div class="event">
-          <time>18:00</time>
-          <article>
-            <div class="event-top"><h3>抵達台東站・取車</h3><span class="tag">確認門市時間</span></div>
-            <p>選台東站附近租車最省力。若列車抵達偏晚，務必先確認租車門市是否可19:00後取車，或是否能安排延時交車。</p>
-            <details open><summary>取車檢查</summary><div class="mini-grid">
-              <div class="mini"><b>拍照</b><span>車身四周、輪框、油表、里程、內裝明顯污損。</span></div>
-              <div class="mini"><b>文件</b><span>駕照、信用卡、租約、保險內容、第二駕駛登記。</span></div>
-              <div class="mini"><b>車型</b><span>2大2小建議 Corolla Cross、Sienta、RAV4 或同級休旅。</span></div>
-            </div></details>
-          </article>
-        </div>
-        <div class="event">
-          <time>19:30</time>
-          <article>
-            <div class="event-top"><h3>台東市晚餐・入住</h3><span class="tag">早點睡</span></div>
-            <p>第一晚只吃飯、入住、整理隔天衣物。7/30要04:20出門，這晚不要貪玩。</p>
-            <details><summary>適合第一晚的餐廳</summary><div class="mini-grid">
-              <div class="mini"><b>快速孩子版</b><span>老東台米苔目＋阿鋐炸雞。</span></div>
-              <div class="mini"><b>合菜版</b><span>米巴奈山地美食坊，適合想吃原住民風味。</span></div>
-              <div class="mini"><b>溫和版</b><span>七里坡紅藜養生料理，口味較清爽。</span></div>
-            </div></details>
-          </article>
-        </div>
+        <div class="day-label">DAY 1｜7/29（三）抵達台東市</div>
+        <div class="event"><time>13:50</time><article><div class="event-top"><h3>抵達高雄小港機場</h3><span class="tag">交通銜接日</span></div><p>領行李後搭高雄捷運紅線前往高雄車站。建議訂15:30–16:30之間往台東的自強／新自強。</p><details><summary>銜接提醒</summary><div class="mini-grid"><div class="mini"><b>捷運</b><span>小港到高雄車站含走路抓約40分鐘。</span></div><div class="mini"><b>台鐵</b><span>暑假熱門，對號座要早訂。</span></div><div class="mini"><b>備案</b><span>航班延誤就搭下一班，第一晚不排景點。</span></div></div></details></article></div>
+        <div class="event"><time>18:00</time><article><div class="event-top"><h3>台東站取車、入住台東市</h3><span class="tag">確認晚間取車</span></div><p>選台東站旁租車門市，確認7/29晚上可取車。若無法晚取，需安排送車或隔天清晨取車，但隔天看熱氣球會比較麻煩。</p><details open><summary>取車檢查</summary><div class="mini-grid"><div class="mini"><b>拍照</b><span>車身、輪框、油表、里程、內裝。</span></div><div class="mini"><b>文件</b><span>駕照、信用卡、租約、保險、第二駕駛。</span></div><div class="mini"><b>車型</b><span>建議休旅或小型MPV，行李更好放。</span></div></div></details></article></div>
+        <div class="event"><time>19:30</time><article><div class="event-top"><h3>台東市晚餐</h3><span class="tag">早睡優先</span></div><p>推薦老東台米苔目＋阿鋐炸雞、米巴奈山地美食坊或七里坡紅藜養生料理。晚上整理隔天衣物，盡量21:30前睡。</p></article></div>
 
-        <div class="day-label">DAY 2｜7/30（四）熱氣球主日</div>
-        <div class="event">
-          <time>04:20</time>
-          <article>
-            <div class="event-top"><h3>台東市出發前往鹿野高台</h3><span class="tag">全日最早</span></div>
-            <p>車程約40–50分鐘。熱氣球期間鹿野高台周邊有交通管制，沿線禁止停車，依官方停車場或接駁指示。</p>
-            <details><summary>出門包</summary><div class="mini-grid">
-              <div class="mini"><b>保暖</b><span>薄外套、野餐墊。清晨高台有風。</span></div>
-              <div class="mini"><b>補給</b><span>飯糰／麵包、水、小孩小零食。</span></div>
-              <div class="mini"><b>防護</b><span>防蚊液、帽子、行動電源、濕紙巾。</span></div>
-            </div></details>
-          </article>
-        </div>
-        <div class="event">
-          <time>05:15</time>
-          <article>
-            <div class="event-top"><h3>鹿野高台・清晨熱氣球</h3><span class="tag">05:30–07:00</span></div>
-            <p>看造型球充氣、升空與縱谷晨光。繫留體驗受風況影響，應把「看到熱氣球」當主體，搭乘當作驚喜。</p>
-            <details open><summary>必看必拍</summary><div class="mini-grid">
-              <div class="mini"><b>必看</b><ul><li>熱氣球充氣瞬間</li><li>草坡與中央山脈</li><li>日出後的縱谷光線</li></ul></div>
-              <div class="mini"><b>親子任務</b><span>讓孩子各選一顆最喜歡的造型球，拍「今天的熱氣球冠軍」。</span></div>
-              <div class="mini"><b>現實提醒</b><span>升空與繫留都看天氣，風大或雨勢不佳會取消。</span></div>
-            </div></details>
-          </article>
-        </div>
-        <div class="event">
-          <time>07:30</time>
-          <article>
-            <div class="event-top"><h3>鹿野早餐・龍田綠色隧道</h3><span class="tag">輕量散步</span></div>
-            <p>早餐後到龍田走一段綠色隧道與農村道路，可買紅烏龍。不要騎太久，7月底很快變熱。</p>
-          </article>
-        </div>
-        <div class="event">
-          <time>10:20</time>
-          <article>
-            <div class="event-top"><h3>初鹿牧場</h3><span class="tag">孩子放風</span></div>
-            <p>看乳牛、吃鮮奶冰淇淋、草地走走。這站適合上午，下午會太曬。</p>
-          </article>
-        </div>
-        <div class="event">
-          <time>13:30</time>
-          <article>
-            <div class="event-top"><h3>回飯店午休</h3><span class="tag">務必保留</span></div>
-            <p>這不是空檔，是讓晚上的光雕音樂會走得完的關鍵。吃簡單午餐後回飯店睡覺或安靜休息。</p>
-          </article>
-        </div>
-        <div class="event">
-          <time>16:00</time>
-          <article>
-            <div class="event-top"><h3>再上鹿野高台・下午場＋光雕</h3><span class="tag">17:00–晚間</span></div>
-            <p>17:00–18:30有下午熱氣球展演。7/30晚上鹿野高台有光雕音樂會場次，建議提早進場、帶簡單晚餐與坐墊。</p>
-            <details open><summary>晚間提醒</summary><div class="mini-grid">
-              <div class="mini"><b>晚餐</b><span>外帶便當、飯糰、麵包，比現場排隊穩。</span></div>
-              <div class="mini"><b>散場</b><span>活動結束別急衝停車場，等人潮散一點再走。</span></div>
-              <div class="mini"><b>回程</b><span>回台東市約40–60分鐘，孩子可在車上睡。</span></div>
-            </div></details>
-          </article>
-        </div>
+        <div class="day-label">DAY 2｜7/30（四）鹿野熱氣球與光雕</div>
+        <div class="event"><time>04:20</time><article><div class="event-top"><h3>台東市出發前往鹿野高台</h3><span class="tag">清晨主場</span></div><p>台東市到鹿野高台約40–50分鐘。活動期間有交通管制，依官方停車與接駁指示，不要沿線違停。</p></article></div>
+        <div class="event"><time>05:15</time><article><div class="event-top"><h3>鹿野高台清晨熱氣球</h3><span class="tag">05:30–07:00</span></div><p>看造型球充氣、升空與縱谷晨光。繫留體驗受風況影響，不保證起飛，先把「看球」當主體。</p><details open><summary>必看必帶</summary><div class="mini-grid"><div class="mini"><b>必看</b><ul><li>熱氣球充氣瞬間</li><li>中央山脈晨光</li><li>草坡上的造型球</li></ul></div><div class="mini"><b>必帶</b><span>薄外套、野餐墊、水、飯糰、防蚊液。</span></div><div class="mini"><b>親子任務</b><span>讓孩子選一顆「今日冠軍球」合照。</span></div></div></details></article></div>
+        <div class="event"><time>07:30</time><article><div class="event-top"><h3>鹿野早餐＋龍田綠色隧道</h3><span class="tag">輕量走</span></div><p>早餐後走龍田棋盤村落、綠色隧道與茶園，可買紅烏龍。不要騎太久，7月底很快變熱。</p></article></div>
+        <div class="event"><time>10:20</time><article><div class="event-top"><h3>初鹿牧場</h3><span class="tag">孩子放風</span></div><p>看乳牛、喝鮮奶、吃冰淇淋，草地走走即可。午前離開，避免正午曝曬。</p></article></div>
+        <div class="event"><time>13:30</time><article><div class="event-top"><h3>回飯店午休</h3><span class="tag">請保留</span></div><p>這段是晚上看光雕的體力保險。午餐簡單吃，回飯店睡覺或安靜休息。</p></article></div>
+        <div class="event"><time>16:00</time><article><div class="event-top"><h3>再上鹿野高台：下午場＋光雕音樂會</h3><span class="tag">17:00–晚間</span></div><p>17:00–18:30有下午熱氣球。7/30鹿野高台有光雕音樂會場次，建議提早進場、帶簡單晚餐與坐墊。</p></article></div>
 
-        <div class="day-label">DAY 3｜7/31（五）市區收尾回高雄</div>
-        <div class="event">
-          <time>08:30</time>
-          <article>
-            <div class="event-top"><h3>台東森林公園</h3><span class="tag">晨間戶外</span></div>
-            <p>租自行車或協力車遊琵琶湖、活水湖與林間步道。官方資訊列開放時間為08:00–17:00，早上去最舒服。</p>
-            <details><summary>必看</summary><div class="mini-grid">
-              <div class="mini"><b>琵琶湖</b><span>湖面倒影漂亮，適合家庭照。</span></div>
-              <div class="mini"><b>林間道</b><span>木麻黃林蔭騎車，比市區涼。</span></div>
-              <div class="mini"><b>活水湖</b><span>視時間與體力短停即可，不需要繞完整園區。</span></div>
-            </div></details>
-          </article>
-        </div>
-        <div class="event">
-          <time>11:00</time>
-          <article>
-            <div class="event-top"><h3>午餐與伴手禮</h3><span class="tag">別排太滿</span></div>
-            <p>吃完午餐後買紅烏龍、洛神花、釋迦乾等伴手禮。若想室內吹冷氣，可改台東糖廠文創園區短逛。</p>
-          </article>
-        </div>
-        <div class="event">
-          <time>14:00</time>
-          <article>
-            <div class="event-top"><h3>台東站還車</h3><span class="tag">預留30分鐘</span></div>
-            <p>還車前加滿油、保留收據，拍油表、里程、車身。不要把還車壓到火車前10分鐘，這很容易把人逼成熱鍋螞蟻。</p>
-          </article>
-        </div>
-        <div class="event">
-          <time>15:30</time>
-          <article>
-            <div class="event-top"><h3>台鐵返回高雄</h3><span class="tag">傍晚抵達</span></div>
-            <p>建議訂15:30–17:00間的對號車，約18:00–19:30回到高雄，再接捷運去小港或高雄市區住宿。</p>
-          </article>
-        </div>
+        <div class="day-label">DAY 3｜7/31（五）關山＋池上縱谷日</div>
+        <div class="event"><time>08:30</time><article><div class="event-top"><h3>台東市退房，往關山</h3><span class="tag">縱谷主日</span></div><p>從台東市開往關山約45–60分鐘。今天不回台東市住宿，行李放車上，貴重物品隨身。</p></article></div>
+        <div class="event"><time>09:30</time><article><div class="event-top"><h3>關山親水公園／環鎮短騎</h3><span class="tag">不要全程硬騎</span></div><p>關山是台灣很適合騎車的小鎮，但7月底炎熱，只安排短程或親水公園放風。孩子如果精神好，再加一小段自行車。</p><details><summary>關山必吃</summary><div class="mini-grid"><div class="mini"><b>午餐</b><span>關山便當總店，經典快速。</span></div><div class="mini"><b>加餐</b><span>關山臭豆腐可四人共享。</span></div><div class="mini"><b>節奏</b><span>不要在中午騎完整環鎮道。</span></div></div></details></article></div>
+        <div class="event"><time>13:00</time><article><div class="event-top"><h3>池上大坡池</h3><span class="tag">湖邊慢走</span></div><p>先到大坡池散步、看水鳥與湖景。這站比直接衝伯朗大道更溫柔，適合飯後消化。</p></article></div>
+        <div class="event"><time>14:30</time><article><div class="event-top"><h3>池上伯朗大道</h3><span class="tag">租電動車</span></div><p>建議租四人電動車或有遮陽棚車款，看金城武樹、天堂路、稻田與中央山脈。八月稻況視收割期而變，但縱谷山景仍值得。</p><details open><summary>必看必拍</summary><div class="mini-grid"><div class="mini"><b>必看</b><ul><li>天堂路</li><li>金城武樹</li><li>大觀亭周邊山景</li></ul></div><div class="mini"><b>防曬</b><span>帽子、水、防曬乳，孩子不要在烈日下長時間騎車。</span></div><div class="mini"><b>玩法</b><span>把這裡當「慢看稻田」，不是打卡衝刺。</span></div></div></details></article></div>
+        <div class="event"><time>17:00</time><article><div class="event-top"><h3>入住池上／關山</h3><span class="tag">推薦池上</span></div><p>第三晚住池上最有度假感；想安靜或預算較低可住關山。晚餐可吃池上飯包、客家合菜、福原豆腐店或大池豆皮店。</p></article></div>
+
+        <div class="day-label">DAY 4｜8/1（六）池上慢遊回高雄</div>
+        <div class="event"><time>08:30</time><article><div class="event-top"><h3>池上早餐、退房</h3><span class="tag">不用早起</span></div><p>前一天玩得滿，第四天不要再排清晨硬仗。睡飽、慢慢吃早餐。</p></article></div>
+        <div class="event"><time>09:30</time><article><div class="event-top"><h3>池上穀倉藝術館／飯包故事館</h3><span class="tag">室內避暑</span></div><p>用一個室內文化點收尾，了解池上米與地方生活。若想戶外，可改大坡池短走或早上再回伯朗大道補拍。</p></article></div>
+        <div class="event"><time>11:30</time><article><div class="event-top"><h3>午餐後返回台東站</h3><span class="tag">抓路程</span></div><p>池上回台東站約1–1.5小時，建議12:45左右出發，留還車時間。</p></article></div>
+        <div class="event"><time>14:00</time><article><div class="event-top"><h3>台東站還車</h3><span class="tag">預留30分鐘</span></div><p>加滿油、拍油表里程與車身、保留加油收據。不要把還車壓到火車前10分鐘。</p></article></div>
+        <div class="event"><time>15:30</time><article><div class="event-top"><h3>台鐵返回高雄</h3><span class="tag">傍晚抵達</span></div><p>建議訂15:30–17:00間對號車，約18:00–19:30回到高雄，再接捷運去小港或高雄市區住宿。</p></article></div>
       </div>
     </section>
 
     <section id="transport">
-      <div class="section-head">
-        <div>
-          <p class="kicker">TRAIN & CAR</p>
-          <h2>交通與租車策略</h2>
-        </div>
-        <p class="note">最容易出錯的是「台東站晚上取車」與「還車時間太貼火車」。這兩件事先處理好，旅程就穩很多。</p>
-      </div>
+      <div class="section-head"><div><p class="kicker">TRAIN & CAR</p><h2>交通與租車策略</h2></div><p class="note">四天三夜租車時間會接近72小時，訂車時用實際取還時間比較價格。</p></div>
       <div class="grid three">
-        <article class="card tip-card">
-          <h3>台鐵訂票</h3>
-          <p>高雄—台東暑假熱門，建議一開放就訂。優先選直達自強／新自強，少轉車、少折騰。</p>
-          <ul>
-            <li>去程抓15:30–16:30區間</li>
-            <li>回程抓15:30–17:00區間</li>
-            <li>保留航班延誤備案</li>
-          </ul>
-        </article>
-        <article class="card tip-card">
-          <h3>台東站租車</h3>
-          <p>優先找台東站旁門市，確認7/29晚間可取車。若門市太早關，請改約送車或隔天清晨取車。</p>
-          <ul>
-            <li>和運、格上、中租等都可比價</li>
-            <li>確認保險與道路救援</li>
-            <li>第二駕駛要事先登記</li>
-          </ul>
-        </article>
-        <article class="card tip-card">
-          <h3>車型建議</h3>
-          <p>2大2小加行李，休旅或小型MPV比房車好放行李，也比較適合鹿野、初鹿一帶移動。</p>
-          <ul>
-            <li>Corolla Cross / Sienta 同級</li>
-            <li>行李少可用 Altis 同級</li>
-            <li>兒童座椅／增高墊先預約</li>
-          </ul>
-        </article>
+        <article class="card tip-card"><h3>台鐵訂票</h3><p>高雄—台東暑假熱門，優先訂直達自強／新自強。</p><ul><li>去程：7/29 15:30–16:30</li><li>回程：8/1 15:30–17:00</li><li>保留航班延誤備案</li></ul></article>
+        <article class="card tip-card"><h3>台東站取還車</h3><p>取車最好安排在台東站旁，確認7/29晚上可取車、8/1下午可還車。</p><ul><li>問清楚逾時費</li><li>確認保險與道路救援</li><li>第二駕駛要登記</li></ul></article>
+        <article class="card tip-card"><h3>車型建議</h3><p>2大2小加行李，休旅或小型MPV會比房車舒服。</p><ul><li>Corolla Cross / Sienta 同級</li><li>行李少可 Altis 同級</li><li>兒童座椅或增高墊先預約</li></ul></article>
       </div>
     </section>
 
     <section id="food">
-      <div class="section-head">
-        <div>
-          <p class="kicker">EAT & STAY</p>
-          <h2>餐廳與住宿建議</h2>
-        </div>
-        <p class="note">這趟不追求每餐排隊名店，重點是孩子吃得下、大人不狼狽、第二天能早起。</p>
-      </div>
+      <div class="section-head"><div><p class="kicker">EAT & STAY</p><h2>餐廳與住宿建議</h2></div><p class="note">前兩晚住台東市、第三晚住池上，是這版最順的住宿配置。</p></div>
       <div class="grid three">
-        <article class="card food-card">
-          <h3>第一晚晚餐</h3>
-          <p>移動日選近市區、速度快或好停車的店。</p>
-          <ul>
-            <li>老東台米苔目＋阿鋐炸雞</li>
-            <li>米巴奈山地美食坊</li>
-            <li>七里坡紅藜養生料理</li>
-          </ul>
-        </article>
-        <article class="card food-card">
-          <h3>第二天午餐</h3>
-          <p>清晨起床後不要吃太重，下午要回飯店休息。</p>
-          <ul>
-            <li>鹿野／初鹿簡餐</li>
-            <li>台東市區合菜</li>
-            <li>便利商店＋飯店午休也完全可以</li>
-          </ul>
-        </article>
-        <article class="card food-card">
-          <h3>住宿區域</h3>
-          <p>兩晚住同一間，優先選有停車場與早餐可彈性處理的飯店。</p>
-          <ul>
-            <li>台東市中心／鐵花村附近</li>
-            <li>台東森林公園附近</li>
-            <li>台東車站到市區中間一帶</li>
-          </ul>
-        </article>
+        <article class="card food-card"><h3>第1–2晚：台東市</h3><p>方便接熱氣球與晚餐。</p><ul><li>台東市中心／鐵花村附近</li><li>台東森林公園附近</li><li>需有停車場、可打包早餐更好</li></ul></article>
+        <article class="card food-card"><h3>第3晚：池上／關山</h3><p>池上較有度假感，關山較安靜。</p><ul><li>池上車站附近民宿</li><li>親子度假村或有停車民宿</li><li>關山民宿適合省預算</li></ul></article>
+        <article class="card food-card"><h3>必吃方向</h3><p>不必每餐排隊，家庭版以順路為主。</p><ul><li>台東：米苔目、阿鋐炸雞、原民合菜</li><li>關山：便當、臭豆腐</li><li>池上：飯包、豆皮、豆腐、客家菜</li></ul></article>
       </div>
     </section>
 
     <section id="backup">
-      <div class="section-head">
-        <div>
-          <p class="kicker">PLAN B</p>
-          <h2>雨天與體力不足備案</h2>
-        </div>
-        <p class="note">7月底是高溫、午後雷雨與颱風季，備案不是悲觀，是台東旅遊的基本禮貌。</p>
-      </div>
+      <div class="section-head"><div><p class="kicker">PLAN B</p><h2>雨天與體力不足備案</h2></div><p class="note">7月底是高溫、午後雷雨與颱風季，備案是東部旅行的防震墊。</p></div>
       <div class="grid three">
-        <article class="card tip-card">
-          <h3>熱氣球取消</h3>
-          <p>若清晨因風雨取消，保留下午17:00–18:30第二次機會。若整天都不穩，改龍田、初鹿與室內咖啡休息。</p>
-        </article>
-        <article class="card tip-card">
-          <h3>第三天下雨</h3>
-          <p>台東森林公園改為國立臺灣史前文化博物館、卑南遺址公園或台東糖廠文創園區。</p>
-        </article>
-        <article class="card tip-card">
-          <h3>想加池上</h3>
-          <p>若很想去伯朗大道，建議取消7/30晚間光雕，改成清晨熱氣球後往關山、池上；不要兩者都硬塞。</p>
-        </article>
+        <article class="card tip-card"><h3>熱氣球取消</h3><p>清晨取消就留下午場；整天不穩則改初鹿、龍田短走、咖啡店與飯店休息。</p></article>
+        <article class="card tip-card"><h3>池上太熱</h3><p>伯朗大道延到15:30後，並租電動車；中午用大坡池短走、甜品或室內點過渡。</p></article>
+        <article class="card tip-card"><h3>第四天下雨</h3><p>改池上穀倉藝術館、飯包故事館，或直接提早回台東市還車。</p></article>
       </div>
-      <div class="notice" style="margin-top:18px"><strong>司機保護線：</strong>7/30若全家清晨起床後精神很差，取消初鹿或龍田，直接回飯店午休。晚上的光雕比上午多一站打卡更值得保留。</div>
+      <div class="notice" style="margin-top:18px"><strong>取捨線：</strong>Day 2 不加池上；Day 3 不回台東市；Day 4 不排東海岸。四天三夜的舒服感，來自不貪心。</div>
     </section>
 
     <section id="checklist">
-      <div class="section-head">
-        <div>
-          <p class="kicker">CHECKLIST</p>
-          <h2>出發前清單</h2>
-        </div>
-        <p class="note">勾選狀態會存在這台裝置的瀏覽器裡，下次打開仍會保留。</p>
-      </div>
+      <div class="section-head"><div><p class="kicker">CHECKLIST</p><h2>出發前清單</h2></div><p class="note">勾選狀態會存在這台裝置的瀏覽器裡，下次打開仍會保留。</p></div>
       <div class="checklist">
         <label class="check"><input type="checkbox"><span>訂好高雄→台東、台東→高雄台鐵對號座</span></label>
-        <label class="check"><input type="checkbox"><span>確認小港機場到高雄車站的捷運銜接時間</span></label>
-        <label class="check"><input type="checkbox"><span>預約台東站租車，確認7/29晚間可取車</span></label>
-        <label class="check"><input type="checkbox"><span>確認飯店有停車場，且可協助清晨早餐或外帶</span></label>
-        <label class="check"><input type="checkbox"><span>查看熱氣球繫留票與7/30光雕音樂會官方公告</span></label>
+        <label class="check"><input type="checkbox"><span>確認7/29小港機場到高雄車站銜接時間</span></label>
+        <label class="check"><input type="checkbox"><span>預約台東站租車，確認晚間取車與8/1下午還車</span></label>
+        <label class="check"><input type="checkbox"><span>訂台東市2晚＋池上／關山1晚住宿，確認停車</span></label>
+        <label class="check"><input type="checkbox"><span>查看7/30熱氣球繫留票與光雕音樂會官方公告</span></label>
         <label class="check"><input type="checkbox"><span>準備薄外套、帽子、防曬、防蚊液、雨具</span></label>
         <label class="check"><input type="checkbox"><span>出發前48小時查看台東天氣、颱風動態與活動公告</span></label>
         <label class="check"><input type="checkbox"><span>下載台鐵e訂通、租車公司App與離線地圖</span></label>
@@ -733,22 +169,12 @@
     </section>
   </main>
 
-  <footer class="footer">
-    <strong>2026 台東三天兩夜｜高雄小港抵達・台鐵＋台東租車</strong><br>
-    行程、活動、開放時間與交通資訊可能因天候與官方公告調整；出發前請以台鐵、熱氣球嘉年華與各場館最新資訊為準。
-  </footer>
-
+  <footer class="footer"><strong>2026 台東四天三夜｜高雄小港抵達・台鐵＋台東租車</strong><br>行程、活動、開放時間與交通資訊可能因天候與官方公告調整；出發前請以台鐵、熱氣球嘉年華與各場館最新資訊為準。</footer>
   <button class="to-top" aria-label="回到頁首" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
-
   <script>
-    const boxes = [...document.querySelectorAll('.check input')];
-    const saved = JSON.parse(localStorage.getItem('taitung2026Checklist') || '[]');
-    boxes.forEach((box, i) => {
-      box.checked = Boolean(saved[i]);
-      box.addEventListener('change', () => {
-        localStorage.setItem('taitung2026Checklist', JSON.stringify(boxes.map(x => x.checked)));
-      });
-    });
+    const boxes=[...document.querySelectorAll('.check input')];
+    const saved=JSON.parse(localStorage.getItem('taitung2026Checklist4d3n')||'[]');
+    boxes.forEach((box,i)=>{box.checked=Boolean(saved[i]);box.addEventListener('change',()=>{localStorage.setItem('taitung2026Checklist4d3n',JSON.stringify(boxes.map(x=>x.checked)))})});
   </script>
 </body>
 </html>
