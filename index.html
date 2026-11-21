@@ -51,6 +51,8 @@
         </div>
       </div>
       <nav class="flex items-center gap-1.5 sm:gap-3 text-xs sm:text-sm font-medium overflow-x-auto py-1">
+        <a href="#comic-theater" class="px-2.5 py-1.5 rounded-lg hover:bg-stone-800 text-amber-300 hover:text-amber-200 font-semibold transition whitespace-nowrap">🎨 因果漫畫劇場</a>
+        <a href="#seven-states-comic" class="px-2.5 py-1.5 rounded-lg hover:bg-stone-800 text-rose-300 hover:text-rose-200 font-semibold transition whitespace-nowrap">🦸 七雄與變法漫畫</a>
         <a href="#timeline" class="px-2.5 py-1.5 rounded-lg hover:bg-stone-800 text-stone-200 hover:text-amber-300 transition whitespace-nowrap">因果時間軸</a>
         <a href="#map-section" class="px-2.5 py-1.5 rounded-lg hover:bg-stone-800 text-stone-200 hover:text-amber-300 transition whitespace-nowrap">七雄版圖</a>
         <a href="#battles" class="px-2.5 py-1.5 rounded-lg hover:bg-stone-800 text-stone-200 hover:text-amber-300 transition whitespace-nowrap">三大戰役與變法</a>
@@ -96,6 +98,303 @@
   </section>
 
   <main class="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12 space-y-14">
+
+    <!-- 新增：互動式因果漫畫劇場 -->
+    <section id="comic-theater" class="bg-amber-50/80 rounded-2xl shadow-sm border-2 border-amber-300 p-6 sm:p-8 relative overflow-hidden">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-white bg-rose-600 px-2.5 py-1 rounded-md shadow-sm">視覺記憶強化</span>
+          <h3 class="text-xl sm:text-2xl font-bold text-stone-900 font-serif-tc mt-2">🎨 戰國七雄．因果串連漫畫劇場</h3>
+          <p class="text-sm text-stone-700 mt-1">透過 8 格漫畫分鏡與人物對話，一眼看懂「春秋瓦解 ➔ 七雄並立 ➔ 秦統一基礎」的連鎖反應！</p>
+        </div>
+        <div class="flex items-center gap-2 bg-white p-1.5 rounded-xl border border-amber-300 shadow-sm self-start">
+          <button onclick="setComicMode('all')" id="btn-comic-all" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-amber-600 text-white transition">📖 全覽漫畫圖</button>
+          <button onclick="setComicMode('focus')" id="btn-comic-focus" class="px-3 py-1.5 rounded-lg text-xs font-bold text-stone-700 hover:bg-amber-100 transition">🔍 逐格放大導讀</button>
+        </div>
+      </div>
+
+      <!-- 逐格導讀控制器（預設隱藏，切換至導讀模式顯示） -->
+      <div id="comic-focus-bar" class="hidden mb-6 bg-stone-900 text-white p-4 rounded-xl flex flex-wrap items-center justify-between gap-3 shadow">
+        <div class="flex items-center gap-2">
+          <span class="px-2.5 py-1 rounded bg-amber-500 text-stone-950 font-black text-xs" id="comic-step-badge">第 1 / 8 格</span>
+          <span class="font-bold text-sm sm:text-base text-amber-300" id="comic-step-title">春秋舊秩序瓦解</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="stepComic(-1)" class="px-3 py-1.5 rounded-lg bg-stone-700 hover:bg-stone-600 text-xs font-bold transition">⬅ 上一格</button>
+          <button onclick="stepComic(1)" class="px-3 py-1.5 rounded-lg bg-amber-600 hover:bg-amber-500 text-xs font-bold transition">下一格 ➡</button>
+        </div>
+      </div>
+
+      <!-- 漫畫分鏡網格容器 -->
+      <div id="comic-grid" class="space-y-6">
+        <!-- 第 1 層：頂端序幕 -->
+        <div class="max-w-xl mx-auto">
+          <div id="comic-panel-0" onclick="highlightComicPanel(0)" class="comic-panel cursor-pointer bg-white border-4 border-stone-900 rounded-2xl p-4 shadow-[6px_6px_0px_#1c1917] transition-all hover:-translate-y-1">
+            <div class="flex items-center justify-between mb-2">
+              <span class="bg-stone-900 text-amber-300 text-xs font-black px-2.5 py-0.5 rounded">第 1 格｜歷史序幕</span>
+              <span class="text-xs font-bold text-stone-500">春秋末期</span>
+            </div>
+            <h4 class="font-serif-tc font-black text-lg text-stone-900 mb-2 text-center bg-amber-100 py-1 rounded border border-amber-300">💥 春秋舊秩序瓦解</h4>
+            <!-- 漫畫插畫 SVG -->
+            <svg viewBox="0 0 360 120" class="w-full h-28 rounded-xl bg-gradient-to-b from-amber-100 to-stone-200 border-2 border-stone-800 mb-2.5">
+              <!-- 斷裂的周禮石碑 -->
+              <rect x="35" y="30" width="52" height="75" rx="4" fill="#78716c" stroke="#1c1917" stroke-width="2.5" transform="rotate(-8 60 65)" />
+              <text x="60" y="62" font-size="14" font-weight="900" fill="#fef3c7" text-anchor="middle" transform="rotate(-8 60 65)">周禮</text>
+              <path d="M 42 72 L 58 66 L 68 78 L 82 70" stroke="#1c1917" stroke-width="2.5" fill="none" />
+              <!-- 混戰小人與對話框 -->
+              <circle cx="155" cy="52" r="14" fill="#fde68a" stroke="#1c1917" stroke-width="2" />
+              <path d="M 140 95 L 155 68 L 170 95 Z" fill="#dc2626" stroke="#1c1917" stroke-width="2" />
+              <line x1="168" y1="75" x2="205" y2="45" stroke="#1c1917" stroke-width="3" />
+              <circle cx="245" cy="52" r="14" fill="#fde68a" stroke="#1c1917" stroke-width="2" />
+              <path d="M 230 95 L 245 68 L 260 95 Z" fill="#2563eb" stroke="#1c1917" stroke-width="2" />
+              <line x1="232" y1="75" x2="195" y2="45" stroke="#1c1917" stroke-width="3" />
+              <!-- 漫畫對話泡泡 -->
+              <rect x="268" y="14" width="84" height="44" rx="10" fill="#ffffff" stroke="#1c1917" stroke-width="2" />
+              <text x="310" y="33" font-size="10.5" font-weight="bold" fill="#1c1917" text-anchor="middle">周王管不住啦！</text>
+              <text x="310" y="48" font-size="10.5" font-weight="bold" fill="#dc2626" text-anchor="middle">天下要大亂了！</text>
+            </svg>
+            <p class="text-xs sm:text-sm font-bold text-stone-800 text-center bg-stone-100 p-2 rounded-lg border border-stone-300">
+              「春秋末期，禮樂崩壞，諸侯從『爭霸』走向『兼併』時代！」
+            </p>
+          </div>
+        </div>
+
+        <!-- 因果分流箭頭 -->
+        <div class="flex justify-center items-center gap-16 sm:gap-40 text-amber-600 font-black text-2xl select-none">
+          <span>↙️ 因果分支一</span>
+          <span>因果分支二 ↘️</span>
+        </div>
+
+        <!-- 第 2 層：三家分晉 & 田氏代齊 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- 第 2 格：三家分晉 -->
+          <div id="comic-panel-1" onclick="highlightComicPanel(1)" class="comic-panel cursor-pointer bg-white border-4 border-stone-900 rounded-2xl p-4 shadow-[6px_6px_0px_#1c1917] transition-all hover:-translate-y-1">
+            <div class="flex items-center justify-between mb-2">
+              <span class="bg-blue-700 text-white text-xs font-black px-2.5 py-0.5 rounded">第 2 格｜分界標誌①</span>
+              <span class="text-xs font-bold text-blue-700">公元前 403 年</span>
+            </div>
+            <h4 class="font-serif-tc font-black text-lg text-stone-900 mb-2 text-center bg-blue-50 py-1 rounded border border-blue-200">⚔️ 公元前 403 年：三家分晉</h4>
+            <svg viewBox="0 0 360 125" class="w-full h-28 rounded-xl bg-amber-50 border-2 border-stone-800 mb-2.5">
+              <!-- 分裂的三塊地圖 -->
+              <path d="M 30 25 L 110 25 L 95 95 L 25 95 Z" fill="#93c5fd" stroke="#1c1917" stroke-width="2.5" />
+              <text x="65" y="65" font-size="18" font-weight="900" fill="#1e3a8a" text-anchor="middle">韓</text>
+              <path d="M 118 20 L 205 20 L 195 95 L 105 95 Z" fill="#fde047" stroke="#1c1917" stroke-width="2.5" />
+              <text x="155" y="65" font-size="18" font-weight="900" fill="#854d0e" text-anchor="middle">趙</text>
+              <path d="M 212 25 L 295 25 L 285 95 L 202 95 Z" fill="#86efac" stroke="#1c1917" stroke-width="2.5" />
+              <text x="248" y="65" font-size="18" font-weight="900" fill="#14532d" text-anchor="middle">魏</text>
+              <!-- 周王冊封泡泡 -->
+              <rect x="235" y="6" width="118" height="36" rx="8" fill="#ffffff" stroke="#1c1917" stroke-width="2" />
+              <text x="294" y="22" font-size="9.5" font-weight="bold" fill="#1c1917" text-anchor="middle">周威烈王無奈宣布：</text>
+              <text x="294" y="35" font-size="9.5" font-weight="bold" fill="#1d4ed8" text-anchor="middle">正式冊封你們為諸侯！</text>
+            </svg>
+            <p class="text-xs sm:text-sm font-bold text-stone-800 text-center bg-stone-100 p-2 rounded-lg border border-stone-300">
+              「晉國一分為三（韓、趙、魏），戰國序幕正式拉開！」
+            </p>
+          </div>
+
+          <!-- 第 3 格：田氏代齊 -->
+          <div id="comic-panel-2" onclick="highlightComicPanel(2)" class="comic-panel cursor-pointer bg-white border-4 border-stone-900 rounded-2xl p-4 shadow-[6px_6px_0px_#1c1917] transition-all hover:-translate-y-1">
+            <div class="flex items-center justify-between mb-2">
+              <span class="bg-amber-600 text-white text-xs font-black px-2.5 py-0.5 rounded">第 3 格｜分界標誌②</span>
+              <span class="text-xs font-bold text-amber-700">公元前 386 年</span>
+            </div>
+            <h4 class="font-serif-tc font-black text-lg text-stone-900 mb-2 text-center bg-amber-50 py-1 rounded border border-amber-200">👑 公元前 386 年：田氏代齊</h4>
+            <svg viewBox="0 0 360 125" class="w-full h-28 rounded-xl bg-orange-50 border-2 border-stone-800 mb-2.5">
+              <!-- 姜姓旗幟倒下 -->
+              <line x1="50" y1="105" x2="95" y2="35" stroke="#78716c" stroke-width="4" />
+              <polygon points="95,35 135,50 85,65" fill="#e5e7eb" stroke="#1c1917" stroke-width="2" />
+              <text x="103" y="54" font-size="11" font-weight="bold" fill="#6b7280">姜齊</text>
+              <!-- 田和坐上王位 -->
+              <rect x="175" y="45" width="60" height="60" rx="6" fill="#d97706" stroke="#1c1917" stroke-width="2.5" />
+              <circle cx="205" cy="32" r="14" fill="#fde68a" stroke="#1c1917" stroke-width="2" />
+              <rect x="193" y="14" width="24" height="8" fill="#1c1917" />
+              <text x="205" y="80" font-size="14" font-weight="900" fill="#ffffff" text-anchor="middle">田和</text>
+              <!-- 對話泡泡 -->
+              <rect x="242" y="12" width="110" height="42" rx="8" fill="#ffffff" stroke="#1c1917" stroke-width="2" />
+              <text x="297" y="29" font-size="10" font-weight="bold" fill="#1c1917" text-anchor="middle">我田和自立為齊侯！</text>
+              <text x="297" y="44" font-size="10" font-weight="bold" fill="#b45309" text-anchor="middle">姜姓齊國成為歷史！</text>
+            </svg>
+            <p class="text-xs sm:text-sm font-bold text-stone-800 text-center bg-stone-100 p-2 rounded-lg border border-stone-300">
+              「田氏取代姜姓齊國，與三家分晉並列春秋戰國分界線！」
+            </p>
+          </div>
+        </div>
+
+        <!-- 匯聚箭頭 -->
+        <div class="text-center text-amber-600 font-black text-2xl select-none">
+          ↘️ 匯聚成新格局 ↙️
+        </div>
+
+        <!-- 第 3 層：戰國七雄格局形成 -->
+        <div class="max-w-2xl mx-auto">
+          <div id="comic-panel-3" onclick="highlightComicPanel(3)" class="comic-panel cursor-pointer bg-white border-4 border-stone-900 rounded-2xl p-4 shadow-[6px_6px_0px_#1c1917] transition-all hover:-translate-y-1">
+            <div class="flex items-center justify-between mb-2">
+              <span class="bg-rose-700 text-white text-xs font-black px-2.5 py-0.5 rounded">第 4 格｜七雄並立</span>
+              <span class="text-xs font-bold text-rose-700">群雄逐鹿</span>
+            </div>
+            <h4 class="font-serif-tc font-black text-lg text-stone-900 mb-2 text-center bg-rose-50 py-1 rounded border border-rose-200">🔥 戰國七雄格局正式形成！</h4>
+            <div class="grid grid-cols-7 gap-1.5 sm:gap-2 my-3 text-center">
+              <div class="bg-amber-600 text-white font-serif-tc font-black py-3 rounded-xl border-2 border-stone-900 shadow">齊<div class="text-[10px] font-sans font-normal">最東</div></div>
+              <div class="bg-emerald-600 text-white font-serif-tc font-black py-3 rounded-xl border-2 border-stone-900 shadow">楚<div class="text-[10px] font-sans font-normal">最南</div></div>
+              <div class="bg-indigo-600 text-white font-serif-tc font-black py-3 rounded-xl border-2 border-stone-900 shadow">燕<div class="text-[10px] font-sans font-normal">東北</div></div>
+              <div class="bg-purple-600 text-white font-serif-tc font-black py-3 rounded-xl border-2 border-stone-900 shadow">韓<div class="text-[10px] font-sans font-normal">三晉</div></div>
+              <div class="bg-blue-600 text-white font-serif-tc font-black py-3 rounded-xl border-2 border-stone-900 shadow">趙<div class="text-[10px] font-sans font-normal">三晉</div></div>
+              <div class="bg-teal-600 text-white font-serif-tc font-black py-3 rounded-xl border-2 border-stone-900 shadow">魏<div class="text-[10px] font-sans font-normal">三晉</div></div>
+              <div class="bg-red-600 text-white font-serif-tc font-black py-3 rounded-xl border-2 border-stone-900 shadow">秦<div class="text-[10px] font-sans font-normal">最西</div></div>
+            </div>
+            <p class="text-xs sm:text-sm font-bold text-stone-800 text-center bg-stone-100 p-2 rounded-lg border border-stone-300">
+              「齊楚燕韓趙魏秦，七雄是『國家』不是人物（⚠️吳國已不在其中）！」
+            </p>
+          </div>
+        </div>
+
+        <!-- 東西雙線發展箭頭 -->
+        <div class="flex justify-center items-center gap-16 sm:gap-40 text-amber-600 font-black text-2xl select-none">
+          <span>↙️ 東方戰場</span>
+          <span>西方崛起 ↘️</span>
+        </div>
+
+        <!-- 第 4 層：東方齊魏爭霸 & 西方秦國崛起 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- 第 5 格：東方齊魏爭霸 -->
+          <div id="comic-panel-4" onclick="highlightComicPanel(4)" class="comic-panel cursor-pointer bg-white border-4 border-stone-900 rounded-2xl p-4 shadow-[6px_6px_0px_#1c1917] transition-all hover:-translate-y-1">
+            <div class="flex items-center justify-between mb-2">
+              <span class="bg-teal-700 text-white text-xs font-black px-2.5 py-0.5 rounded">第 5 格｜東方智鬥</span>
+              <span class="text-xs font-bold text-teal-700">孫臏 VS 龐涓</span>
+            </div>
+            <h4 class="font-serif-tc font-black text-lg text-stone-900 mb-2 text-center bg-teal-50 py-1 rounded border border-teal-200">🧠 東方：齊魏爭霸（桂陵＆馬陵）</h4>
+            <svg viewBox="0 0 360 130" class="w-full h-28 rounded-xl bg-emerald-50 border-2 border-stone-800 mb-2.5">
+              <!-- 孫臏笑臉與火灶 -->
+              <circle cx="65" cy="48" r="15" fill="#fde68a" stroke="#1c1917" stroke-width="2" />
+              <path d="M 48 98 L 65 65 L 82 98 Z" fill="#d97706" stroke="#1c1917" stroke-width="2" />
+              <text x="65" y="115" font-size="11" font-weight="900" fill="#78350f" text-anchor="middle">齊軍師：孫臏</text>
+              <!-- 對話泡泡 -->
+              <rect x="92" y="10" width="132" height="48" rx="8" fill="#ffffff" stroke="#1c1917" stroke-width="2" />
+              <text x="158" y="27" font-size="9.5" font-weight="bold" fill="#1c1917" text-anchor="middle">① 桂陵用「圍魏救趙」</text>
+              <text x="158" y="42" font-size="9.5" font-weight="bold" fill="#dc2626" text-anchor="middle">② 馬陵用「減灶誘敵」！</text>
+              <!-- 龐涓驚慌逃跑 -->
+              <circle cx="285" cy="52" r="14" fill="#fca5a5" stroke="#1c1917" stroke-width="2" />
+              <path d="M 270 98 L 285 68 L 300 98 Z" fill="#0d9488" stroke="#1c1917" stroke-width="2" />
+              <text x="285" y="115" font-size="10.5" font-weight="900" fill="#991b1b" text-anchor="middle">魏將龐涓兵敗自殺</text>
+            </svg>
+            <p class="text-xs sm:text-sm font-bold text-stone-800 text-center bg-stone-100 p-2 rounded-lg border border-stone-300">
+              「齊國軍師孫臏兩度大破魏軍，魏國從此失去霸主地位！」
+            </p>
+          </div>
+
+          <!-- 第 6 格：西方秦國崛起 -->
+          <div id="comic-panel-5" onclick="highlightComicPanel(5)" class="comic-panel cursor-pointer bg-white border-4 border-stone-900 rounded-2xl p-4 shadow-[6px_6px_0px_#1c1917] transition-all hover:-translate-y-1">
+            <div class="flex items-center justify-between mb-2">
+              <span class="bg-red-700 text-white text-xs font-black px-2.5 py-0.5 rounded">第 6 格｜西方變法</span>
+              <span class="text-xs font-bold text-red-700">天險＋商鞅變法</span>
+            </div>
+            <h4 class="font-serif-tc font-black text-lg text-stone-900 mb-2 text-center bg-red-50 py-1 rounded border border-red-200">🛡️ 西方：秦國憑險變法崛起</h4>
+            <svg viewBox="0 0 360 130" class="w-full h-28 rounded-xl bg-amber-100/70 border-2 border-stone-800 mb-2.5">
+              <!-- 崤山與函谷關城牆 -->
+              <polygon points="15,105 55,35 95,105" fill="#78716c" stroke="#1c1917" stroke-width="2" />
+              <rect x="75" y="55" width="55" height="50" fill="#44403c" stroke="#1c1917" stroke-width="2" />
+              <text x="102" y="76" font-size="9.5" font-weight="bold" fill="#fbbf24" text-anchor="middle">崤山</text>
+              <text x="102" y="90" font-size="9.5" font-weight="bold" fill="#fbbf24" text-anchor="middle">函谷關</text>
+              <!-- 商鞅變法公告 -->
+              <rect x="145" y="14" width="200" height="88" rx="10" fill="#ffffff" stroke="#1c1917" stroke-width="2" />
+              <text x="245" y="34" font-size="11" font-weight="900" fill="#b91c1c" text-anchor="middle">📜 商鞅變法三大絕招：</text>
+              <text x="245" y="53" font-size="10" font-weight="bold" fill="#1c1917" text-anchor="middle">1. 獎勵農業（糧草充足）</text>
+              <text x="245" y="71" font-size="10" font-weight="bold" fill="#1c1917" text-anchor="middle">2. 按軍功授爵（士兵超拚命！）</text>
+              <text x="245" y="89" font-size="10" font-weight="bold" fill="#1c1917" text-anchor="middle">3. 連坐法（加強中央集權）</text>
+            </svg>
+            <p class="text-xs sm:text-sm font-bold text-stone-800 text-center bg-stone-100 p-2 rounded-lg border border-stone-300">
+              「地處最西守天險，加上商鞅變法，秦國國力躍居七雄之首！」
+            </p>
+          </div>
+        </div>
+
+        <!-- 決戰匯流箭頭 -->
+        <div class="text-center text-rose-600 font-black text-2xl select-none">
+          ⬇️ 終極大決戰 ⬇️
+        </div>
+
+        <!-- 第 5 層：長平之戰 & 為統一六國奠基 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- 第 7 格：長平之戰 -->
+          <div id="comic-panel-6" onclick="highlightComicPanel(6)" class="comic-panel cursor-pointer bg-white border-4 border-stone-900 rounded-2xl p-4 shadow-[6px_6px_0px_#1c1917] transition-all hover:-translate-y-1">
+            <div class="flex items-center justify-between mb-2">
+              <span class="bg-stone-900 text-rose-400 text-xs font-black px-2.5 py-0.5 rounded">第 7 格｜決定性決戰</span>
+              <span class="text-xs font-bold text-rose-700">公元前 260 年</span>
+            </div>
+            <h4 class="font-serif-tc font-black text-lg text-stone-900 mb-2 text-center bg-rose-100 py-1 rounded border border-rose-300">💥 公元前 260 年：長平之戰</h4>
+            <svg viewBox="0 0 360 125" class="w-full h-28 rounded-xl bg-stone-800 border-2 border-stone-900 mb-2.5">
+              <!-- 秦軍大旗 -->
+              <rect x="45" y="22" width="52" height="36" fill="#dc2626" stroke="#ffffff" stroke-width="2" />
+              <text x="71" y="46" font-size="18" font-weight="900" fill="#ffffff" text-anchor="middle">秦</text>
+              <line x1="45" y1="22" x2="45" y2="105" stroke="#ffffff" stroke-width="3" />
+              <text x="75" y="95" font-size="11" font-weight="bold" fill="#fca5a5" text-anchor="middle">大獲全勝！</text>
+              <!-- VS -->
+              <text x="180" y="65" font-size="24" font-weight="900" fill="#fbbf24" text-anchor="middle">VS</text>
+              <!-- 趙軍斷旗 -->
+              <rect x="255" y="38" width="52" height="36" fill="#2563eb" stroke="#93c5fd" stroke-width="2" transform="rotate(15 280 55)" />
+              <text x="281" y="62" font-size="18" font-weight="900" fill="#ffffff" text-anchor="middle" transform="rotate(15 280 55)">趙</text>
+              <text x="280" y="102" font-size="11" font-weight="bold" fill="#93c5fd" text-anchor="middle">趙軍主力慘敗</text>
+            </svg>
+            <p class="text-xs sm:text-sm font-bold text-stone-800 text-center bg-stone-100 p-2 rounded-lg border border-stone-300">
+              「公元前 260 年，秦、趙決戰長平，趙軍慘敗！」
+            </p>
+          </div>
+
+          <!-- 第 8 格：為統一六國奠定基礎 -->
+          <div id="comic-panel-7" onclick="highlightComicPanel(7)" class="comic-panel cursor-pointer bg-white border-4 border-stone-900 rounded-2xl p-4 shadow-[6px_6px_0px_#1c1917] transition-all hover:-translate-y-1">
+            <div class="flex items-center justify-between mb-2">
+              <span class="bg-amber-500 text-stone-950 text-xs font-black px-2.5 py-0.5 rounded">第 8 格｜歷史大結局</span>
+              <span class="text-xs font-bold text-amber-800">大勢已定</span>
+            </div>
+            <h4 class="font-serif-tc font-black text-lg text-stone-900 mb-2 text-center bg-amber-200 py-1 rounded border border-amber-400">🏆 為秦統一六國奠定基礎</h4>
+            <svg viewBox="0 0 360 125" class="w-full h-28 rounded-xl bg-gradient-to-r from-red-900 to-amber-800 border-2 border-stone-900 mb-2.5">
+              <circle cx="95" cy="62" r="38" fill="#dc2626" stroke="#fbbf24" stroke-width="3" />
+              <text x="95" y="73" font-size="32" font-weight="900" fill="#fef08a" text-anchor="middle">秦</text>
+              <path d="M 148 62 L 185 62" stroke="#fbbf24" stroke-width="5" marker-end="url(#arrow)" />
+              <rect x="195" y="22" width="145" height="80" rx="10" fill="#1c1917" stroke="#fbbf24" stroke-width="2" />
+              <text x="267" y="48" font-size="11" font-weight="bold" fill="#fbbf24" text-anchor="middle">東方六國無力抗秦</text>
+              <text x="267" y="68" font-size="11" font-weight="bold" fill="#ffffff" text-anchor="middle">統一中國指日可待！</text>
+              <text x="267" y="88" font-size="9.5" fill="#d6d3d1" text-anchor="middle">（考題必考意義題！）</text>
+            </svg>
+            <p class="text-xs sm:text-sm font-bold text-stone-800 text-center bg-stone-100 p-2 rounded-lg border border-stone-300">
+              「長平之戰後，六國再也無力抗秦，為秦統一六國奠定基礎！」
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 新增：戰國七雄群像與各國變法改革漫畫劇場 -->
+    <section id="seven-states-comic" class="bg-white rounded-2xl shadow-sm border-2 border-stone-800 p-6 sm:p-8">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-white bg-indigo-600 px-2.5 py-1 rounded-md shadow-sm">七雄人物誌 ＆ 變法圖鑑</span>
+          <h3 class="text-xl sm:text-2xl font-bold text-stone-900 font-serif-tc mt-2">🦸 戰國七雄是哪七雄？各找了誰來變法改革？</h3>
+          <p class="text-sm text-stone-600 mt-1">口訣：「<strong>齊楚燕韓趙魏秦</strong>」。戰國時代不想被吞併，各國紛紛請出超級改革家！點擊下方漫畫卡片看各國絕招：</p>
+        </div>
+        <div class="flex flex-wrap gap-1.5" id="reform-filter-btns">
+          <button onclick="filterSevenComic('all')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-stone-900 text-white transition">全部七雄 (7)</button>
+          <button onclick="filterSevenComic('sanjin')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-stone-100 text-stone-700 hover:bg-stone-200 transition">三家分晉 (韓趙魏)</button>
+          <button onclick="filterSevenComic('top')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-stone-100 text-stone-700 hover:bg-stone-200 transition">最強變法代表</button>
+        </div>
+      </div>
+
+      <!-- 七雄漫畫卡片網格 -->
+      <div id="seven-states-comic-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <!-- 由 JS 動態生成 7 張高畫質漫畫角色卡 -->
+      </div>
+
+      <!-- 總結漫畫對話框 -->
+      <div class="mt-6 bg-amber-100 border-2 border-stone-900 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row items-center gap-4 shadow-[4px_4px_0px_#1c1917]">
+        <div class="w-12 h-12 rounded-full bg-red-600 text-white font-serif-tc font-black text-xl flex items-center justify-center shrink-0 border-2 border-stone-900">
+          結
+        </div>
+        <div class="text-xs sm:text-sm text-stone-900 leading-relaxed">
+          <strong class="text-base text-rose-800 block mb-0.5">💡 老師畫重點：為什麼大家都在變法，最後卻是秦國贏？</strong>
+          魏國（李悝）和楚國（吳起）雖然最早變法強大，但國君死後改革就人亡政息；只有<strong>秦國的商鞅變法</strong>最徹底、延續最久，把「獎勵農業」與「按軍功授爵」深深扎根，最終橫掃六國！
+        </div>
+      </div>
+    </section>
 
     <!-- 第一部分：春秋 vs 戰國 核心觀念對比 -->
     <section class="bg-white rounded-2xl shadow-sm border border-stone-200 p-6 sm:p-8">
@@ -803,8 +1102,227 @@
       renderQuiz();
     }
 
+    // ================= 6. 因果漫畫劇場互動控制 =================
+    const comicTitles = [
+      "春秋舊秩序瓦解（春秋末期）",
+      "公元前 403 年：三家分晉",
+      "公元前 386 年：田氏代齊",
+      "戰國七雄格局形成（齊楚燕韓趙魏秦）",
+      "東方：齊魏爭霸（桂陵之戰＆馬陵之戰）",
+      "西方：秦國憑天險與商鞅變法崛起",
+      "公元前 260 年：決定性決戰（長平之戰）",
+      "歷史結局：六國無力抗秦，為統一奠基"
+    ];
+    let comicMode = 'all';
+    let currentComicStep = 0;
+
+    function setComicMode(mode) {
+      comicMode = mode;
+      const btnAll = document.getElementById('btn-comic-all');
+      const btnFocus = document.getElementById('btn-comic-focus');
+      const focusBar = document.getElementById('comic-focus-bar');
+
+      if (mode === 'all') {
+        btnAll.className = "px-3 py-1.5 rounded-lg text-xs font-bold bg-amber-600 text-white transition";
+        btnFocus.className = "px-3 py-1.5 rounded-lg text-xs font-bold text-stone-700 hover:bg-amber-100 transition";
+        focusBar.classList.add('hidden');
+        document.querySelectorAll('.comic-panel').forEach(el => {
+          el.classList.remove('opacity-35', 'ring-4', 'ring-amber-500', 'scale-[1.02]');
+        });
+      } else {
+        btnFocus.className = "px-3 py-1.5 rounded-lg text-xs font-bold bg-amber-600 text-white transition";
+        btnAll.className = "px-3 py-1.5 rounded-lg text-xs font-bold text-stone-700 hover:bg-amber-100 transition";
+        focusBar.classList.remove('hidden');
+        highlightComicPanel(currentComicStep);
+      }
+    }
+
+    function highlightComicPanel(idx) {
+      currentComicStep = idx;
+      if (comicMode !== 'focus') {
+        setComicMode('focus');
+        return;
+      }
+      document.getElementById('comic-step-badge').innerText = `第 ${idx + 1} / 8 格`;
+      document.getElementById('comic-step-title').innerText = comicTitles[idx];
+
+      document.querySelectorAll('.comic-panel').forEach((el, i) => {
+        if (i === idx) {
+          el.classList.remove('opacity-35');
+          el.classList.add('ring-4', 'ring-amber-500', 'scale-[1.02]');
+          el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        } else {
+          el.classList.add('opacity-35');
+          el.classList.remove('ring-4', 'ring-amber-500', 'scale-[1.02]');
+        }
+      });
+    }
+
+    function stepComic(delta) {
+      const next = (currentComicStep + delta + comicTitles.length) % comicTitles.length;
+      highlightComicPanel(next);
+    }
+
+    // ================= 7. 七雄群像與各國變法改革漫畫資料 =================
+    const sevenStatesComicData = [
+      {
+        id: "wei",
+        group: "sanjin",
+        badge: "戰國最早變法｜三晉之一",
+        stateName: "1. 魏國（中原腹地）",
+        color: "#0d9488",
+        bgLight: "bg-teal-50",
+        intro: "由晉國分裂而成，地處中原中心，戰國初期國力最強、最先稱雄！",
+        reformer: "李悝（魏文侯任用）",
+        reformDetail: "推行「李悝變法」：盡地力之教（發展農業）、平糴法（穩定糧價）、編寫《法經》，組建精銳「魏武卒」。",
+        comicSpeech: "我李悝率先變法，讓魏國成為戰國第一個霸主！",
+        reformerTag: "變法先驅"
+      },
+      {
+        id: "chu",
+        group: "other",
+        badge: "疆域最廣｜南方大國",
+        stateName: "2. 楚國（地處最南）",
+        color: "#059669",
+        bgLight: "bg-emerald-50",
+        intro: "位於長江流域，是七雄中領土面積最大、人口最多的超級大國。",
+        reformer: "吳起（楚悼王任用）",
+        reformDetail: "推行「吳起變法」：廢除貴族世襲特權、裁減冗官、節省開支用來養兵，一度使楚國軍威大振。",
+        comicSpeech: "削弱舊貴族、強兵富國！可惜楚悼王一死，貴族就反撲了…",
+        reformerTag: "軍事奇才"
+      },
+      {
+        id: "qin",
+        group: "top",
+        badge: "變法最徹底｜最終統一者",
+        stateName: "3. 秦國（地處最西）",
+        color: "#dc2626",
+        bgLight: "bg-red-50",
+        intro: "憑藉崤山與函谷關天險自守，原本較落後，變法後一躍成為七雄之首！",
+        reformer: "商鞅（秦孝公任用）",
+        reformDetail: "推行「商鞅變法」：獎勵耕織、按軍功大小授爵（最能提升士兵作戰積極性）、推行連坐法與縣制。",
+        comicSpeech: "殺敵立功就能封爵得田！秦國士兵從此化身虎狼之師！",
+        reformerTag: "變法之王"
+      },
+      {
+        id: "qi",
+        group: "top",
+        badge: "東方富國｜田氏代齊",
+        stateName: "4. 齊國（地處最東）",
+        color: "#d97706",
+        bgLight: "bg-amber-50",
+        intro: "田氏取代姜姓後，臨海富庶，文化學術興盛（稷下學宮），長期與秦國東西對峙。",
+        reformer: "鄒忌（齊威王任用）＋孫臏",
+        reformDetail: "鄒忌改革政治、整頓吏治、廣開言路（《鄒忌諷齊王納諫》）；軍事上重用孫臏在桂陵、馬陵大破魏軍。",
+        comicSpeech: "我鄒忌整頓內政，加上軍師孫臏用兵如神，東方誰敢小看齊國！",
+        reformerTag: "整頓吏治"
+      },
+      {
+        id: "han",
+        group: "sanjin",
+        badge: "勁韓利劍｜三晉之一",
+        stateName: "5. 韓國（中原心臟）",
+        color: "#7c3aed",
+        bgLight: "bg-purple-50",
+        intro: "由晉國分裂而成，領土最小、四面受敵，但冶鐵技術發達，兵器天下聞名。",
+        reformer: "申不害（韓昭侯任用）",
+        reformDetail: "推行「申不害變法」：強調國君駕馭臣下的「術」（權術與考核官吏），使韓國一度國治兵強。",
+        comicSpeech: "國君必須懂得考核臣下之『術』，韓國雖小也能自保！",
+        reformerTag: "法家重術"
+      },
+      {
+        id: "zhao",
+        group: "sanjin",
+        badge: "胡服騎射｜三晉之一",
+        stateName: "6. 趙國（北方勁旅）",
+        color: "#2563eb",
+        bgLight: "bg-blue-50",
+        intro: "由晉國分裂而成，位於北方，後期成為唯一能與秦國正面抗衡的軍事強國（長平之戰對手）。",
+        reformer: "趙武靈王（親自改革）",
+        reformDetail: "推行「胡服騎射」：改穿北方游牧民族的緊身短衣（胡服），訓練靈活機動的騎兵射箭，戰鬥力暴增！",
+        comicSpeech: "脫掉寬袍大袖！穿上胡服、練習騎射，打造最強騎兵團！",
+        reformerTag: "胡服騎射"
+      },
+      {
+        id: "yan",
+        group: "other",
+        badge: "築台招賢｜東北強國",
+        stateName: "7. 燕國（地處最北／東北）",
+        color: "#4f46e5",
+        bgLight: "bg-indigo-50",
+        intro: "位於最東北方，早期實力較弱，曾遭齊國攻破，後來發憤圖強差點滅掉齊國。",
+        reformer: "樂毅（燕昭王招賢任用）",
+        reformDetail: "燕昭王築「黃金台」招攬天下賢才，任用名將樂毅改革軍政並聯合五國攻齊，連下齊國七十餘城。",
+        comicSpeech: "燕王築黃金台禮賢下士，我樂毅定為燕國一雪前恥！",
+        reformerTag: "黃金台招賢"
+      }
+    ];
+
+    function renderSevenStatesComic(filter = 'all') {
+      const grid = document.getElementById('seven-states-comic-grid');
+      const filtered = sevenStatesComicData.filter(item => {
+        if (filter === 'all') return true;
+        return item.group === filter;
+      });
+
+      grid.innerHTML = filtered.map(item => `
+        <div class="bg-white border-4 border-stone-900 rounded-2xl p-4 shadow-[5px_5px_0px_#1c1917] flex flex-col justify-between transition-transform hover:-translate-y-1">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <span class="text-[11px] font-black text-white px-2.5 py-0.5 rounded" style="background-color: ${item.color}">${item.badge}</span>
+              <span class="text-xs font-extrabold text-stone-500">#${item.reformerTag}</span>
+            </div>
+            <h4 class="font-serif-tc font-black text-lg text-stone-900 mb-2 px-2.5 py-1 rounded border border-stone-300 ${item.bgLight}">
+              ${item.stateName}
+            </h4>
+
+            <!-- 漫畫人物對話框 SVG -->
+            <svg viewBox="0 0 320 105" class="w-full h-24 rounded-xl border-2 border-stone-800 mb-3 ${item.bgLight}">
+              <!-- 角色頭像與旗幟 -->
+              <rect x="12" y="14" width="26" height="75" rx="3" fill="${item.color}" stroke="#1c1917" stroke-width="2" />
+              <text x="25" y="45" font-size="13" font-weight="900" fill="#ffffff" text-anchor="middle">${item.stateName.slice(3, 4)}</text>
+              <circle cx="66" cy="40" r="15" fill="#fde68a" stroke="#1c1917" stroke-width="2" />
+              <path d="M 48 92 L 66 57 L 84 92 Z" fill="${item.color}" stroke="#1c1917" stroke-width="2" />
+              <!-- 對話泡泡 -->
+              <rect x="94" y="12" width="214" height="80" rx="10" fill="#ffffff" stroke="#1c1917" stroke-width="2" />
+              <polygon points="94,42 84,48 94,54" fill="#ffffff" stroke="#1c1917" stroke-width="2" />
+              <text x="104" y="30" font-size="10.5" font-weight="900" fill="${item.color}">改革主角：${item.reformer}</text>
+              <foreignObject x="102" y="36" width="198" height="52">
+                <div xmlns="http://www.w3.org/1999/xhtml" style="font-size: 11px; font-weight: 700; color: #1c1917; line-height: 1.35;">
+                  「${item.comicSpeech}」
+                </div>
+              </foreignObject>
+            </svg>
+
+            <p class="text-xs text-stone-600 mb-2 leading-relaxed">
+              <strong class="text-stone-900">📍 國家簡介：</strong>${item.intro}
+            </p>
+          </div>
+
+          <div class="bg-stone-100 border border-stone-300 rounded-xl p-3 text-xs text-stone-800 leading-relaxed">
+            <strong class="text-stone-950 block mb-0.5">📜 變法／改革重點：</strong>
+            ${item.reformDetail}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function filterSevenComic(filter) {
+      const btns = document.getElementById('reform-filter-btns').querySelectorAll('button');
+      btns.forEach((btn, idx) => {
+        const keys = ['all', 'sanjin', 'top'];
+        if (keys[idx] === filter) {
+          btn.className = "px-3 py-1.5 rounded-lg text-xs font-bold bg-stone-900 text-white transition";
+        } else {
+          btn.className = "px-3 py-1.5 rounded-lg text-xs font-bold bg-stone-100 text-stone-700 hover:bg-stone-200 transition";
+        }
+      });
+      renderSevenStatesComic(filter);
+    }
+
     // 頁面載入初始化
     window.onload = function () {
+      renderSevenStatesComic('all');
       renderTimeline();
       selectState('qin');
       selectBattle('guiling');
